@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+               <title>Google Chart Example</title>
+               <meta charset="utf-8">                                                                                                           
+               <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.0, maximum-scale=100.0, user-scalable=yes"> 
+
+               <script  src="loader.js"></script>
+
+               <script>
+                         
+var webString = 1;
+
+google.charts.load('current', {'packages':['gauge']});
+                         google.charts.setOnLoadCallback(drawChart);
+
+                         function drawChart() {
+                         
+                                var data = google.visualization.arrayToDataTable([
+                                  ['Label', 'Value'],
+                                  ['V', webString]
+                                ]);
+
+                            
+                                var options = {min: 0, max:280,
+                                  width: 500, height: 150,
+                                  redFrom: 240, redTo: 280,
+                                  minorTicks: 8,
+                                  majorTicks: ['0', '40','80', '120','160', '200','240','280']
+                               };
+                                
+                                var chart = new      google.visualization.Gauge(document.getElementById('chart_div'));
+                                
+  chart.draw(data, options);
+
+  setInterval(function() {
+      webString = window.AppInventor.getWebViewString();        
+       data.setValue(0, 1, webString); 	    
+        chart.draw(data, options);
+        }, 50);                               
+                         }
+               </script>
+</head>
+<body>       
+</html>
+                                                                 
+               <div id="chart_div" style="width: 1025px; height: 308px;"></div>
+<script>
+$('document').ready(function(){
+var webString = 75;
+
+data.setValue(0, 1, webString);
+chart.draw(data, options); 
+
+
+});
+	
+</script>
+</body>
